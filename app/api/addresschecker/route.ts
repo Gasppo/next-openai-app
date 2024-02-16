@@ -39,7 +39,7 @@ export async function POST(req: Request) {
 
     console.log(verify.result.output)
 
-    const response_2 = await openai.chat.completions.create({
+    const verifyAIResponse = await openai.chat.completions.create({
         model: 'gpt-3.5-turbo-0613',
         stream: true,
         messages: [
@@ -56,7 +56,7 @@ export async function POST(req: Request) {
     const data = new experimental_StreamData();
 
     // Convert the response into a friendly text-stream
-    const stream = OpenAIStream(response_2, {
+    const stream = OpenAIStream(verifyAIResponse, {
         onFinal() {
             data.close();
         },
